@@ -1,0 +1,43 @@
+name: Compiler l'APK
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trouver le projet (zip ou dossier)
+        run: |
+          if [ -f Calepin.zip ]; then unzip -q -o Calepin.zip; fi
+          if [ -f Calepin/gradlew ]; then echo "DIR=Calepin" >> $GITHUB_ENV
+          elif [ -f gradlew ]; then echo "DIR=." >> $GITHUB_ENV
+          else echo "Projet introuvable : déposez Calepin.zip à la racine du dépôt"; exit 1; fi
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Compiler
+        working-directory: ${{ env.DIR }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+          cp app/build/outputs/apk/debug/app-debug.apk $GITHUB_WORKSPACE/Calepin.apk
+
+      - name: Publier l'APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Calepin (version ${{ github.run_number }})
+          body: Touchez Calepin.apk pour le télécharger, puis ouvrez-le pour l'installer.
+          files: Calepin.apk
