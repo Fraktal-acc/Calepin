@@ -16,6 +16,12 @@ jobs:
       - name: Trouver le projet (zip ou dossier)
         run: |
           if [ -f Calepin.zip ]; then unzip -q -o Calepin.zip; fi
+          # Modifications envoyées par Claude (texte compressé), appliquées par-dessus le zip
+          if [ -f calepin-changes.b64 ]; then
+            echo "Application des modifications de calepin-changes.b64"
+            base64 -d calepin-changes.b64 | xz -d | patch -p1 --forward
+            echo "PATCHED=1" >> $GITHUB_ENV
+          fi
           if [ -f Calepin/gradlew ]; then echo "DIR=Calepin" >> $GITHUB_ENV
           elif [ -f gradlew ]; then echo "DIR=." >> $GITHUB_ENV
           else echo "Projet introuvable : déposez Calepin.zip à la racine du dépôt"; exit 1; fi
@@ -25,17 +31,60 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Compiler
+      - name: Compiler Calepin et Calepin IA
         working-directory: ${{ env.DIR }}
+        shell: bash
         run: |
+          set -o pipefail
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon --stacktrace
-          cp app/build/outputs/apk/debug/app-debug.apk $GITHUB_WORKSPACE/Calepin.apk
+          ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/build.log"
+          OUT=app/build/outputs/apk/debug
+          cp "$OUT/app-debug.apk" "$GITHUB_WORKSPACE/Calepin.apk"
+          if [ -f "$OUT/app-ia-debug.apk" ]; then cp "$OUT/app-ia-debug.apk" "$GITHUB_WORKSPACE/Calepin-IA.apk"; fi
 
-      - name: Publier l'APK
+      - name: Publier les APK
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
           name: Calepin (version ${{ github.run_number }})
-          body: Touchez Calepin.apk pour le télécharger, puis ouvrez-le pour l'installer.
-          files: Calepin.apk
+          body: |
+            Calepin.apk : l'appli habituelle (met à jour celle déjà installée).
+            Calepin-IA.apk : la version avec IA hors ligne, qui s'installe à côté sans rien remplacer.
+            Touchez un fichier pour le télécharger, puis ouvrez-le pour l'installer.
+          files: |
+            Calepin.apk
+            Calepin-IA.apk
+          fail_on_unmatched_files: false
+
+      # Après une compilation réussie, les modifications sont rangées dans Calepin.zip :
+      # le dépôt redevient « un seul zip », comme d'habitude.
+      - name: Ranger les modifications dans Calepin.zip
+        if: env.PATCHED == '1' && env.DIR == 'Calepin'
+        run: |
+          rm -f Calepin.zip
+          zip -q -r Calepin.zip Calepin -x 'Calepin/app/build/*' 'Calepin/build/*' 'Calepin/.gradle/*' 'Calepin/app/.cxx/*' 'Calepin/local.properties'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -q calepin-changes.b64
+          git rm -q --ignore-unmatch derniere-erreur.txt
+          git add Calepin.zip
+          git commit -q -m "Calepin.zip mis à jour (version ${{ github.run_number }})"
+          git push
+
+      # En cas d'échec, l'erreur est gardée dans le dépôt pour être lue et corrigée
+      - name: Garder l'erreur de compilation
+        if: failure()
+        run: |
+          {
+            echo "Compilation ${{ github.run_number }} échouée"
+            echo
+            grep -E "^e: |: error:|ERROR:|What went wrong|FAILURE|Could not|> " build.log 2>/dev/null | head -120 || true
+            echo
+            echo "----- fin du journal -----"
+            tail -80 build.log 2>/dev/null || true
+          } > derniere-erreur.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add derniere-erreur.txt
+          git commit -q -m "Erreur de compilation (version ${{ github.run_number }})"
+          git push
