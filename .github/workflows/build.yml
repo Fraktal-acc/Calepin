@@ -15,19 +15,28 @@ jobs:
 
       - name: Trouver le projet (zip ou dossier)
         run: |
-          if [ -f Calepin.zip ]; then unzip -q -o Calepin.zip; fi
-          if [ -f Calepin/gradlew ]; then echo "DIR=Calepin" >> $GITHUB_ENV
-          elif [ -f gradlew ]; then echo "DIR=." >> $GITHUB_ENV
-          else echo "Projet introuvable : déposez Calepin.zip à la racine du dépôt"; exit 1; fi
+          shopt -s nullglob
+          for z in *.zip; do echo "Décompression de $z"; unzip -q -o "$z"; done
+          G=$(find . -maxdepth 3 -name gradlew -not -path "./.git/*" | head -n 1)
+          if [ -z "$G" ]; then
+            echo "Pas encore de projet : déposez Calepin.zip à la racine du dépôt."
+            echo "SKIP=1" >> $GITHUB_ENV
+          else
+            echo "DIR=$(dirname "$G")" >> $GITHUB_ENV
+            echo "Projet trouvé dans $(dirname "$G")"
+          fi
 
       - uses: actions/setup-java@v4
+        if: env.SKIP != '1'
         with:
           distribution: temurin
           java-version: 17
 
       - uses: android-actions/setup-android@v3
+        if: env.SKIP != '1'
 
       - name: Compiler
+        if: env.SKIP != '1'
         working-directory: ${{ env.DIR }}
         run: |
           chmod +x gradlew
@@ -35,6 +44,7 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk $GITHUB_WORKSPACE/Calepin.apk
 
       - name: Publier l'APK
+        if: env.SKIP != '1'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
