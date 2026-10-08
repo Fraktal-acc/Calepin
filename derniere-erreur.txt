@@ -1,4 +1,4 @@
-Compilation 80 échouée
+Compilation 82 échouée
 
 > Configure project :app
 > Task :app:downloadFonts
@@ -18,20 +18,25 @@ Compilation 80 échouée
 > Task :app:parseIaDebugLocalResources
 > Task :app:processIaDebugMainManifest
 > Task :app:processIaDebugManifest
+> Task :app:processIaDebugManifestForPackage
 > Task :app:javaPreCompileIaDebug
 > Task :app:mergeIaDebugShaders
 > Task :app:compileIaDebugShaders NO-SOURCE
 > Task :app:generateIaDebugAssets UP-TO-DATE
 > Task :app:mergeIaDebugAssets
-> Task :app:processIaDebugManifestForPackage
 > Task :app:compressIaDebugAssets
 > Task :app:processIaDebugResources
 > Task :app:checkIaDebugDuplicateClasses
 > Task :app:desugarIaDebugFileDependencies
 > Task :app:compileIaDebugKotlin
 > Task :app:mergeExtDexIaDebug
+> Task :app:compileIaDebugKotlin
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/MessagesScreen.kt:759:66 Unresolved reference 'detectTransformGestures'.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/MessagesScreen.kt:759:92 Cannot infer type for implicit value parameter 'it'. Specify it explicitly.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/MessagesScreen.kt:759:95 Cannot infer type for value parameter 'pan'. Specify it explicitly.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/MessagesScreen.kt:759:100 Cannot infer type for value parameter 'zoom'. Specify it explicitly.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/MessagesScreen.kt:759:106 Cannot infer type for implicit value parameter 'it'. Specify it explicitly.
 > Task :app:compileIaDebugKotlin FAILED
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/mail/MailClient.kt:307:37 Argument type mismatch: actual type is 'List<Message!>', but 'Array<(out) Message!>!' was expected.
 FAILURE: Build failed with an exception.
 * What went wrong:
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
@@ -119,5 +124,5 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 3m 25s
+BUILD FAILED in 4m 7s
 23 actionable tasks: 23 executed
