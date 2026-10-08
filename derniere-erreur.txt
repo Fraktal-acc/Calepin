@@ -1,4 +1,4 @@
-Compilation 78 échouée
+Compilation 80 échouée
 
 > Configure project :app
 > Task :app:downloadFonts
@@ -23,74 +23,16 @@ Compilation 78 échouée
 > Task :app:compileIaDebugShaders NO-SOURCE
 > Task :app:generateIaDebugAssets UP-TO-DATE
 > Task :app:mergeIaDebugAssets
-> Task :app:compressIaDebugAssets
-> Task :app:desugarIaDebugFileDependencies
-> Task :app:checkIaDebugDuplicateClasses
-> Task :app:configureCMakeDebug[arm64-v8a]
 > Task :app:processIaDebugManifestForPackage
-> Task :app:mergeExtDexIaDebug
-> Task :app:mergeLibDexIaDebug
-> Task :app:buildCMakeDebug[arm64-v8a]
-> Task :app:configureCMakeDebug[armeabi-v7a]
+> Task :app:compressIaDebugAssets
 > Task :app:processIaDebugResources
-> Task :app:buildCMakeDebug[armeabi-v7a]
-> Task :app:configureCMakeDebug[x86_64]
-> Task :app:buildCMakeDebug[x86_64]
-> Task :app:mergeIaDebugJniLibFolders
-> Task :app:validateSigningIaDebug
-> Task :app:writeIaDebugAppMetadata
-> Task :app:writeIaDebugSigningConfigVersions
-> Task :app:preStandardDebugBuild
-> Task :app:generateStandardDebugBuildConfig
-> Task :app:mergeIaDebugNativeLibs
-> Task :app:checkStandardDebugAarMetadata
-> Task :app:generateStandardDebugResValues
-> Task :app:mapStandardDebugSourceSetPaths
-> Task :app:generateStandardDebugResources
-> Task :app:stripIaDebugDebugSymbols
-> Task :app:packageStandardDebugResources
-> Task :app:createStandardDebugCompatibleScreenManifests
-> Task :app:extractDeepLinksStandardDebug
-> Task :app:parseStandardDebugLocalResources
-> Task :app:processStandardDebugMainManifest
-> Task :app:processStandardDebugManifest
-> Task :app:javaPreCompileStandardDebug
-> Task :app:mergeStandardDebugResources
-> Task :app:processStandardDebugManifestForPackage
-> Task :app:preStandardDebugUnitTestBuild
-> Task :app:mergeStandardDebugNativeDebugMetadata NO-SOURCE
-> Task :app:javaPreCompileStandardDebugUnitTest
-> Task :app:mergeStandardDebugShaders
-> Task :app:compileStandardDebugShaders NO-SOURCE
-> Task :app:generateStandardDebugAssets UP-TO-DATE
-> Task :app:mergeStandardDebugAssets
-> Task :app:compressStandardDebugAssets
-> Task :app:desugarStandardDebugFileDependencies
-> Task :app:mergeStandardDebugJniLibFolders
-> Task :app:checkStandardDebugDuplicateClasses
-> Task :app:processStandardDebugResources
-> Task :app:mergeStandardDebugNativeLibs
+> Task :app:checkIaDebugDuplicateClasses
+> Task :app:desugarIaDebugFileDependencies
 > Task :app:compileIaDebugKotlin
-> Task :app:mergeLibDexStandardDebug
-> Task :app:mergeExtDexStandardDebug
-> Task :app:validateSigningStandardDebug
-> Task :app:writeStandardDebugAppMetadata
-> Task :app:writeStandardDebugSigningConfigVersions
-> Task :app:stripStandardDebugDebugSymbols
-> Task :app:compileStandardDebugKotlin
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/PdfViewerScreen.kt:810:44 'val maxWidth: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary.
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/PdfViewerScreen.kt:810:69 'val maxHeight: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary.
-> Task :app:compileStandardDebugKotlin FAILED
+> Task :app:mergeExtDexIaDebug
 > Task :app:compileIaDebugKotlin FAILED
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/PdfViewerScreen.kt:810:44 'val maxWidth: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary.
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/PdfViewerScreen.kt:810:69 'val maxHeight: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary.
-FAILURE: Build completed with 2 failures.
-* What went wrong:
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
-   > Compilation error. See log for more details
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/mail/MailClient.kt:307:37 Argument type mismatch: actual type is 'List<Message!>', but 'Array<(out) Message!>!' was expected.
+FAILURE: Build failed with an exception.
 * What went wrong:
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
    > Compilation error. See log for more details
@@ -99,9 +41,16 @@ FAILURE: Build completed with 2 failures.
 > Get more help at https://help.gradle.org.
 
 ----- fin du journal -----
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:289)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
@@ -138,9 +87,6 @@ FAILURE: Build completed with 2 failures.
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
 Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
 	at org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork.execute(BuildToolsApiCompilationWork.kt:295)
@@ -161,7 +107,6 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
 	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
 	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
@@ -171,11 +116,8 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
 	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	... 5 more
+	... 2 more
 
-==============================================================================
 
-BUILD FAILED in 4m 44s
-66 actionable tasks: 66 executed
+BUILD FAILED in 3m 25s
+23 actionable tasks: 23 executed
