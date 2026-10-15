@@ -1,14 +1,27 @@
-Compilation 127 échouée
+Compilation 128 échouée
 
 > Configure project :app
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:17:43: Unresolved reference: io
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:18:19: Unresolved reference: it
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:18:42: Unresolved reference: io
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:18:50: Unresolved reference: it
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:19:16: Unresolved reference: it
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/build.gradle.kts:20:20: Unresolved reference: it
 FAILURE: Build failed with an exception.
 * What went wrong:
-> com.android.builder.sdk.InstallFailedException: Failed to install the following SDK components:
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
 ----- fin du journal -----
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$4(DefaultBuildTreeLifecycleController.java:120)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$6(StateTransitionController.java:169)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:169)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
+	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:169)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:117)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:77)
 	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:72)
 	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:31)
 	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
@@ -78,14 +91,6 @@ FAILURE: Build failed with an exception.
 	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
-Caused by: com.android.builder.sdk.InstallFailedException: Failed to install the following SDK components:
-    ndk;27.0.12077973 NDK (Side by side) 27.0.12077973
-Install the missing components using the SDK manager in Android Studio.
-
-	at com.android.builder.sdk.DefaultSdkLoader.checkResults(DefaultSdkLoader.java:539)
-	at com.android.builder.sdk.DefaultSdkLoader.installSdkTool(DefaultSdkLoader.java:460)
-	at com.android.build.gradle.internal.SdkHandler.installNdk(SdkHandler.java:322)
-	... 187 more
 
 
-BUILD FAILED in 1m 10s
+BUILD FAILED in 57s
