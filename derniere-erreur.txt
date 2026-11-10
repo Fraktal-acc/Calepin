@@ -1,4 +1,4 @@
-Compilation 135 échouée
+Compilation 136 échouée
 
 > Task :app:buildKotlinToolingMetadata
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
@@ -11,10 +11,10 @@ Compilation 135 échouée
 > Task :app:mapIaDebugSourceSetPaths
 > Task :app:generateIaDebugResources
 > Task :app:packageIaDebugResources
+> Task :app:mergeIaDebugResources
 > Task :app:createIaDebugCompatibleScreenManifests
 > Task :app:extractDeepLinksIaDebug
 > Task :app:parseIaDebugLocalResources
-> Task :app:mergeIaDebugResources
 > Task :app:processIaDebugMainManifest
 > Task :app:processIaDebugManifest
 > Task :app:javaPreCompileIaDebug
@@ -28,42 +28,43 @@ Compilation 135 échouée
 > Task :app:mergeIaDebugJniLibFolders
 > Task :app:mergeIaDebugNativeLibs
 > Task :app:checkIaDebugDuplicateClasses
-> Task :app:mergeIaDebugStartupProfile
-> Task :app:mergeIaDebugShaders
+> Task :app:processIaDebugManifestForPackage
 > Task :app:mergeIaDebugArtProfile
+> Task :app:mergeIaDebugStartupProfile
+> Task :app:stripIaDebugDebugSymbols
+> Task :app:mergeIaDebugShaders
 > Task :app:compileIaDebugShaders NO-SOURCE
 > Task :app:generateIaDebugAssets UP-TO-DATE
-> Task :app:stripIaDebugDebugSymbols
 > Task :app:mergeIaDebugAssets
-> Task :app:processIaDebugManifestForPackage
+> Task :app:extractIaDebugNativeSymbolTables
 > Task :app:extractIaDebugVersionControlInfo
-> Task :app:collectIaDebugDependencies
+> Task :app:processIaDebugResources
 > Task :app:compressIaDebugAssets
+> Task :app:collectIaDebugDependencies
+> Task :app:mergeIaDebugNativeDebugMetadata
 > Task :app:sdkIaDebugDependencyData
 > Task :app:validateSigningIaDebug
-> Task :app:extractIaDebugNativeSymbolTables
 > Task :app:writeIaDebugAppMetadata
 > Task :app:writeIaDebugSigningConfigVersions
 > Task :app:preStandardDebugBuild
 > Task :app:generateStandardDebugBuildConfig
-> Task :app:processIaDebugResources
-> Task :app:checkStandardDebugAarMetadata
-> Task :app:mergeIaDebugNativeDebugMetadata
 > Task :app:generateStandardDebugResValues
+> Task :app:checkStandardDebugAarMetadata
 > Task :app:mapStandardDebugSourceSetPaths
 > Task :app:generateStandardDebugResources
 > Task :app:convertLinkedResourcesToProtoIaDebug
 > Task :app:packageStandardDebugResources
 > Task :app:createStandardDebugCompatibleScreenManifests
 > Task :app:extractDeepLinksStandardDebug
+> Task :app:parseStandardDebugLocalResources
 > Task :app:processStandardDebugMainManifest
 > Task :app:processStandardDebugManifest
-> Task :app:parseStandardDebugLocalResources
+> Task :app:javaPreCompileStandardDebug
 > Task :app:processStandardDebugManifestForPackage
 > Task :app:preStandardDebugUnitTestBuild
-> Task :app:javaPreCompileStandardDebug
-> Task :app:mergeStandardDebugJniLibFolders
 > Task :app:javaPreCompileStandardDebugUnitTest
+> Task :app:mergeStandardDebugJniLibFolders
+> Task :app:mergeStandardDebugResources
 > Task :app:checkStandardDebugDuplicateClasses
 > Task :app:mergeStandardDebugArtProfile
 > Task :app:mergeStandardDebugStartupProfile
@@ -71,7 +72,6 @@ Compilation 135 échouée
 > Task :app:compileStandardDebugShaders NO-SOURCE
 > Task :app:generateStandardDebugAssets UP-TO-DATE
 > Task :app:mergeStandardDebugNativeLibs
-> Task :app:mergeStandardDebugResources
 > Task :app:mergeStandardDebugAssets
 > Task :app:compressStandardDebugAssets
 > Task :app:extractStandardDebugVersionControlInfo
@@ -87,11 +87,13 @@ Compilation 135 échouée
 > Task :app:convertLinkedResourcesToProtoStandardDebug
 > Task :app:compileIaDebugKotlin
 > Task :app:compileStandardDebugKotlin
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:867:13 The API of this layout is experimental and is likely to change in the future.
 > Task :app:compileIaDebugKotlin
-e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:867:13 The API of this layout is experimental and is likely to change in the future.
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:185:5 Platform declaration clash: The following declarations have the same JVM signature (setDoc(Lfr/jeremy/calepin/office/word/WordDoc;)V):
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:243:5 Platform declaration clash: The following declarations have the same JVM signature (setDoc(Lfr/jeremy/calepin/office/word/WordDoc;)V):
 > Task :app:compileIaDebugKotlin FAILED
 > Task :app:compileStandardDebugKotlin FAILED
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:185:5 Platform declaration clash: The following declarations have the same JVM signature (setDoc(Lfr/jeremy/calepin/office/word/WordDoc;)V):
+e: file:///home/runner/work/Calepin/Calepin/Calepin/app/src/main/java/fr/jeremy/calepin/ui/office/WordEditorScreen.kt:243:5 Platform declaration clash: The following declarations have the same JVM signature (setDoc(Lfr/jeremy/calepin/office/word/WordDoc;)V):
 FAILURE: Build completed with 2 failures.
 * What went wrong:
 > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
@@ -185,5 +187,5 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 
 ==============================================================================
 
-BUILD FAILED in 3m 8s
+BUILD FAILED in 2m 58s
 78 actionable tasks: 78 executed
